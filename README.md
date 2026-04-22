@@ -1,1 +1,1 @@
-# Ckickable-Game_-Assignment
+# CLickable-Game_-Assignment
