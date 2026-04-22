@@ -1,4 +1,4 @@
-//Click a button or object to earn points
+
 // Variables
 let score =0;
 let timeleft =5;
@@ -14,6 +14,9 @@ const ScoreDisplay = document.getElementById('ScoreDisplay');
 const timerDisplay = document.getElementById('timerDisplay');
 const input1 = document.getElementById('name');
 const label1 = document.getElementById('label1');
+const message = document.getElementById('message');
+
+
 // UI Function
 button1.addEventListener('click', () => {
  if (!gameEnded) {
@@ -27,7 +30,6 @@ button1.addEventListener('click', () => {
 button2.addEventListener('click', () => {
   submitHighscore();
 })
-
 
 input1.style.display = 'none';
 label1.style.display = 'none';
@@ -63,18 +65,27 @@ label1.style.display = 'block';
 button2.style.display = 'block';
 }
 
-
-
 async function submitHighscore() {
 
+  try {
+    const response = await fetch("https://hooks.zapier.com/hooks/catch/8338993/ujs9jj9/",
+      {
+        method: "POST",
+        body: JSON.stringify({ name: input1.value, score: score }),
+      }
+    );
 
-  const response = await fetch("https://hooks.zapier.com/hooks/catch/8338993/ujs9jj9/", {
-    method: "POST",
-    body: JSON.stringify({ name: input1.value, score: score }),
-  });
+    if (response.ok) {
+      message.textContent = "Your score was saved successfully!";
+    } else {
+      message.textContent = "Your score could not be saved.";
+    }
 
-  console.log(response);
+    console.log(response);
+  }
 }
+
+
 
 
 
