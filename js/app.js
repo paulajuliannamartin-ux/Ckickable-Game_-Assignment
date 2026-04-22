@@ -1,7 +1,7 @@
 
 // Variables
 let score =0;
-let timeleft =5;
+let timeleft =60;
 let gameStarted = false;
 let gameEnded = false;
 let interval = null;
@@ -82,8 +82,13 @@ async function submitHighscore() {
     }
 
     console.log(response);
+
+  } catch (error) {
+    message.textContent = "Network error. Please try again.";
+    console.error(error);
   }
 }
+
 
 
 
